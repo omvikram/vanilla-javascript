@@ -1,0 +1,64 @@
+<html>
+<head>
+<script type="text/javascript">
+function AddSelectedValues(from, to)
+{
+	var oldChild;
+	var newChild;
+	var removeChildArr = new Array();
+	var selectFrom = document.getElementById(from);
+	var selectTo = document.getElementById(to);
+	
+	for(var i=0; i < selectFrom.children.length; i++)
+	{
+		oldChild = selectFrom.children[i];
+		if(oldChild.selected == true)
+		{
+			removeChildArr[removeChildArr.length++] = oldChild;
+			newChild = document.createElement("option");
+			newChild.innerHTML = oldChild.innerHTML;
+			selectTo.appendChild(newChild);
+
+		}
+	}
+	
+	if(removeChildArr.length > 0)
+	{
+		for(var j= 0; j < removeChildArr.length; j++)
+			selectFrom.removeChild(removeChildArr[j]);
+	}
+	
+}
+
+</script>
+</head>
+<body>
+<center>
+<table width="50%">
+<tr>
+	<td>
+		<select id="selectFrom" size=5 multiple>
+		  <option value=0>Volvo</option>
+		  <option value=1>Saab</option>
+		  <option value=2>Mercedes</option>
+		  <option value=3>Audi</option>
+		  <option value=4 >Saab</option>
+		  <option value=5>Mercedes</option>
+		  <option value=6>Audi</option>
+		</select>
+	</td>
+	<td>
+		<input type="button" value=">>" onclick="AddSelectedValues('selectFrom','selectTo');"/> 
+		&nbsp;&nbsp;
+		<input type="button" value="<<" onclick="AddSelectedValues('selectTo','selectFrom');"/>
+	</td>
+	<td>
+			<select id="selectTo" size=5 multiple>
+				<option value=0>lumborgini</option>
+			</select>
+	</td>
+</tr>
+</table>
+</center>
+</body>
+</html>

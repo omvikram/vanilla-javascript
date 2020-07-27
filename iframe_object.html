@@ -1,0 +1,47 @@
+<html>
+<head>
+<script>
+
+var xmlhttp;
+
+if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+try {
+if(navigator.userAgent.indexOf("MSIE")!=-1)
+xmlhttp = new XMLHttpRequest("Microsoft.XMLHTTP");
+else
+xmlhttp = new XMLHttpRequest();
+} catch (e) {
+xmlhttp=false;
+}
+}
+
+function CheckFileExists()
+{
+var object = self.document.getElementById("objectTag");
+var url = object.data;
+
+xmlhttp.open("HEAD", url,false);
+
+try{
+xmlhttp.onreadystatechange=function(){
+if (xmlhttp.readyState==4) 
+{
+if (xmlhttp.status==200) alert("URL Exists!")
+else if (xmlhttp.status==404) alert("URL doesn't exist!")
+else alert("Status is "+xmlhttp.status)
+}}
+xmlhttp.send()
+}
+catch(e)
+{
+alert(e)
+}
+}
+
+</script>
+</head>
+
+<body onload="CheckFileExists()">
+<object id="objectTag" data="http://www.irs.gov/pub/irs-pdf/fw4.pdf" type="application/pdf" width=100% height=100%></object>
+</body>
+</html>

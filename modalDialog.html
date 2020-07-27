@@ -1,0 +1,36 @@
+<html>
+<head>
+<script type="text/javascript" src="ModalDialog.js"></script>
+var obj;
+function showModalDialog()
+{
+obj = new ModalDialogObj();
+obj.CreateModalDialog("yesnocancel", "Self Service Message", "Do you want to proceed?");
+waitForResponse();
+}
+
+//This function will wait for the user response
+function waitForResponse()
+{ 
+if(obj.value == "")
+{
+setTimeout("waitForResponse()", 200);
+}
+else
+{
+callBackFunction();
+}
+}
+
+Check the user response i.e. which button he/she has clicked "Yes", "No", or "Cancel" 
+function callBackFunction()
+{
+alert("Value : " + obj.value);
+}
+</head>
+Once you get the user response you can perform whatever action you want to do 
+
+<body>
+<button type=submit id=Button5 onclick="showModalDialog()">Show Cross Browser Modal Dialog Window</button>
+</body>
+</html>
